@@ -11,7 +11,7 @@ class ConfigUI:
         return self.config["DEFAULT"].get("LLM_OPTION", "").split(",")
 
     def get_groq_model_option(self):
-        return self.config["DEFAULT"].get("GROQ_MODEL_OPTION", "")
+        return self.config["DEFAULT"].get("GROQ_MODEL_OPTION", "").split(",")
 
     def get_openai_model_option(self):
         return self.config["DEFAULT"].get("OPENAI_MODEL_OPTION", "")
