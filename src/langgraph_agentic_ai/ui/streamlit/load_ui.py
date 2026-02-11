@@ -18,25 +18,27 @@ class LoadStreamlitUI:
         st.header(self.config.get_page_title())
 
         with st.sidebar:
-
             llm_option = self.config.get_LLMs_Option()
-            usecase_option = self.config.get_usecase_option()
+            use_case_option = self.config.get_usecase_option()
 
-            select_models = st.selectbox("Select LLM", llm_option)
+            self.user_control["selected_LLM"] = st.selectbox(
+                "Select LLM", llm_option
+            )
 
-            
-            if select_models == "Groq":
+            if self.user_control["selected_LLM"] == "Groq":
                 model_options = self.config.get_groq_model_option()
-            elif select_models == "OpenAI":
-                model_options = self.config.get_openai_model_option()
-            else:
-                model_options = []
-                
-            selected_model = st.selectbox("Select Model", model_options)
-            user_control = st.selectbox("Select Usecase", usecase_option)
+                self.user_control["selected_groq_model"] = st.selectbox(
+                    "Select model", model_options
+                )
 
-        return {
-            "llm": select_models,
-            "model": selected_model,
-            "usecase": user_control
-        }
+            elif self.user_control["selected_LLM"] == "OpenAI":
+                model_options = self.config.get_openai_model_option()
+                self.user_control["selected_openai_model"] = st.selectbox(
+                    "Select model", model_options
+                )
+
+            self.user_control["usecase"] = st.selectbox(
+                "Select the use case", use_case_option
+            )
+
+        return self.user_control
