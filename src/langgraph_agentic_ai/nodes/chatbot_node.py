@@ -1,5 +1,5 @@
 from src.langgraph_agentic_ai.state.state_builder import State 
-from langchain_core.messages import BaseMessage
+
 
 
 
@@ -10,6 +10,9 @@ class BasicChatbotNode:
 
         self.model=model
     
-    def basic_chatbot(self,state:State):
+    def process(self,state:State):
+        """
+        it is the functionality of node how it is works and give the result
+        """
 
-        return {"messages":self.model.invoke(State["messages"])}
+        return {"messages":self.model.invoke(state.messages)}
