@@ -19,3 +19,7 @@ class GraphBuilder:
         self.graph.add_node("chatbot",self.basic_chabot_bode.process)
         self.graph.add_edge(START,"chatbot")
         self.graph.add_edge("chatbot",END)
+
+    def setup_graph(self,usecase):
+        if usecase == "Basic Chatbot":
+            self.build_chatbot()
