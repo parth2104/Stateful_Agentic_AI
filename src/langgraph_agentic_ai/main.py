@@ -2,6 +2,7 @@ import streamlit as st
 from src.langgraph_agentic_ai.ui.streamlit.load_ui import LoadStreamlitUI
 from src.langgraph_agentic_ai.LLMs.llm import LLM
 from src.langgraph_agentic_ai.graphs.graph_builder import GraphBuilder
+from src.langgraph_agentic_ai.ui.streamlit.display_results import  DisplayResultStreamlit
 
 
 def load_langgraph_agentic_ai():
@@ -35,7 +36,8 @@ def load_langgraph_agentic_ai():
             graph_builder=GraphBuilder(model)
 
             graph=graph_builder.setup_graph(use_case)
+            DisplayResultStreamlit(use_case,graph,user_message).display_result_on_ui()
             
 
         except Exception as e:
-            pass
+            st.error(f"Error: Graph setup failed{e}")
