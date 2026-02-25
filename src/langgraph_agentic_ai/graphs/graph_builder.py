@@ -23,3 +23,4 @@ class GraphBuilder:
     def setup_graph(self,usecase):
         if usecase == "Basic Chatbot":
             self.build_chatbot()
+        return self.graph.compile()
